@@ -69,7 +69,7 @@ function game() {
 
     for (let i = 0; i < 5; i++) {
         // your code here!
-        const playerSelection = prompt(`Round ${i+1}: Rock, Paper or Scissors? `, "");
+        const playerSelection = prompt(`Round ${i+1}: [Rock] [Paper] [Scissors] `, "");
 
         if (playerSelection == undefined || playerSelection == "") {
             return alert("Cancelled");
@@ -92,7 +92,7 @@ function game() {
             // Show result per round
             console.log(playRound(playerSelection, computerSelection));
         } else {
-            return alert("Invalid input! Please select one. (Rock, Paper or Scissors)");
+            return alert("Invalid input!\nPlease reload the page then select one. [Rock] [Paper] [Scissors]");
         }
     }
 
