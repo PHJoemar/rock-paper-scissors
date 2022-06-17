@@ -16,3 +16,42 @@ function computerPlay() {
         return "Scissors";
     }
 }
+
+// Create a function named playRound that plays a single round of Rock Paper Scissors
+function playRound(playerSelection, computerSelection) {
+    let player = playerSelection.trim().toLowerCase();
+    let computer = computerSelection.toLowerCase();
+
+    // Create an IF statements if player selected Rock
+    if (player == "rock" && computer == "rock") {
+        return "Tie!"
+    }
+    if (player == "rock" && computer == "paper") {
+        return "You Lose! Paper beats Rock!"
+    }
+    if (player == "rock" && computer == "scissors") {
+        return "You Win! Rock beats Scissors!"
+    }
+
+    // Create an IF statements if player selected Paper
+    if (player == "paper" && computer == "rock") {
+        return "You Win! Paper beats Rock!"
+    }
+    if (player == "paper" && computer == "paper") {
+        return "Tie!"
+    }
+    if (player == "paper" && computer == "scissors") {
+        return "You Lose! Scissors beats Paper!"
+    }
+
+    // Create an IF statements if player selected Scissors
+    if (player == "scissors" && computer == "rock") {
+        return "You Lose! Rock beats Scissors!"
+    }
+    if (player == "scissors" && computer == "paper") {
+        return "You Win! Scissors beats Paper!"
+    }
+    if (player == "scissors" && computer == "scissors") {
+        return "You Lose! Scissors beats Paper!"
+    }
+}
