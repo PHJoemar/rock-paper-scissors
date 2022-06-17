@@ -69,7 +69,7 @@ function game() {
 
     for (let i = 0; i < 5; i++) {
         // your code here!
-        const playerSelection = prompt("Rock, Paper or Scissors? ", "");
+        const playerSelection = prompt(`Round ${i+1}: Rock, Paper or Scissors? `, "");
 
         if (playerSelection == undefined || playerSelection == "") {
             return alert("Cancelled");
@@ -80,10 +80,13 @@ function game() {
             let results = playRound(playerSelection, computerSelection);
             
             if (results.toLowerCase().includes("win")) {    // IF user won THEN add 1 in yourScore variable
+                alert(playRound(playerSelection, computerSelection));
                 yourScore += 1;
             } else if (results.toLowerCase().includes("tie")) {    // IF round game is tie THEN 
+                alert(playRound(playerSelection, computerSelection));
                 tie += 1;
             } else {
+                alert(playRound(playerSelection, computerSelection));
                 enemyScore += 1;
             }
             // Show result per round
@@ -98,11 +101,23 @@ function game() {
 
     // Check if who is the winner
     if (yourScore === enemyScore) {
+        alert(`It's a draw. Your score is ${yourScore} out of 5 and ${tie} tie(s).`);
         console.log("Draw");
     } else if (yourScore > enemyScore) {
+        alert(`You won! Your score is ${yourScore} out of 5 and ${tie} tie(s).`);
         console.log("You won!")
     } else {
+        alert(`Computer won! Your score is ${yourScore} out of 5 and ${tie} tie(s).`)
         console.log("Computer won!")
+    }
+
+    let text = "Do you want to play again?\nClick OK if YES or Cancel if NO.";
+    if (confirm(text) == true) {
+        text = "You pressed OK!";
+        game();
+    } else {
+        text = "You canceled!";
+        return false;
     }
 
     return;
