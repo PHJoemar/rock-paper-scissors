@@ -57,7 +57,55 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // Testing the functions above
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+// const playerSelection = "rock";
+// const computerSelection = computerPlay();
+// console.log(playRound(playerSelection, computerSelection));
 
+// Create a function named game that computes scores and loops five round game
+function game() {
+    let yourScore = 0;
+    let tie = 0;
+    let enemyScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        // your code here!
+        const playerSelection = prompt("Rock, Paper or Scissors? ", "");
+
+        if (playerSelection == undefined || playerSelection == "") {
+            return alert("Cancelled");
+        }
+
+        if (playerSelection.trim().toLowerCase() == "rock" || playerSelection.trim().toLowerCase() == "paper" || playerSelection.trim().toLowerCase() == "scissors") {
+            const computerSelection = computerPlay();
+            let results = playRound(playerSelection, computerSelection);
+            
+            if (results.toLowerCase().includes("win")) {    // IF user won THEN add 1 in yourScore variable
+                yourScore += 1;
+            } else if (results.toLowerCase().includes("tie")) {    // IF round game is tie THEN 
+                tie += 1;
+            } else {
+                enemyScore += 1;
+            }
+            // Show result per round
+            console.log(playRound(playerSelection, computerSelection));
+        } else {
+            return alert("Invalid input! Please select one. (Rock, Paper or Scissors)");
+        }
+    }
+
+    // Show the results
+    console.log(`Your score is ${yourScore} out of 5 and ${tie} tie(s).`);
+
+    // Check if who is the winner
+    if (yourScore === enemyScore) {
+        console.log("Draw");
+    } else if (yourScore > enemyScore) {
+        console.log("You won!")
+    } else {
+        console.log("Computer won!")
+    }
+
+    return;
+}
+
+game();
