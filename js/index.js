@@ -55,3 +55,9 @@ function playRound(playerSelection, computerSelection) {
         return "You Lose! Scissors beats Paper!"
     }
 }
+
+// Testing the functions above
+const playerSelection = "rock";
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
+
