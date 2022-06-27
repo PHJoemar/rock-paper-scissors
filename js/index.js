@@ -1,3 +1,31 @@
+const playerPick = document.querySelector('.player');
+const computerPick = document.querySelector('.computer');
+const playerScore = document.querySelector('.player-score');
+const computerScore = document.querySelector('.computer-score');
+const resultText = document.querySelector('.results-text');
+const buttons = document.querySelectorAll('button');
+const btnRock = document.querySelector('.btn-rock');
+const btnPaper = document.querySelector('.btn-paper');
+const btnScissors = document.querySelector('.btn-scissors');
+
+let round = 0;
+let yourScore = 0;
+let tie = 0;
+let enemyScore = 0;
+
+btnRock.addEventListener('click', () => {
+    const playerSelection = "rock";
+    game(playerSelection);
+});
+btnPaper.addEventListener('click', () => {
+    const playerSelection = "paper";
+    game(playerSelection);
+});
+btnScissors.addEventListener('click', () => {
+    const playerSelection = "scissors";
+    game(playerSelection);
+});
+
 function computerPlay() {
     // A variable that gives random number between 1 and 3
     let computer = (Math.floor(Math.random() * 3) + 1);
@@ -16,7 +44,7 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    let player = playerSelection.trim().toLowerCase();
+    let player = playerSelection.toLowerCase();
     let computer = computerSelection.toLowerCase();
     
     if (player == "rock" && computer == "rock") {
@@ -46,67 +74,82 @@ function playRound(playerSelection, computerSelection) {
         return "You Win! Scissors beats Paper!"
     }
     if (player == "scissors" && computer == "scissors") {
-        return "You Lose! Scissors beats Paper!"
+        return "Tie!"
     }
 }
 
-function game() {
-    let yourScore = 0;
-    let tie = 0;
-    let enemyScore = 0;
+function game(playerSelection) {
+    resultText.textContent = "VS";
     
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = prompt(`Round ${i+1}: [Rock] [Paper] [Scissors] `, "");
+    if (playerSelection === "rock") {
+        playerPick.textContent = "🪨";
+    }
+    if (playerSelection === "paper") {
+        playerPick.textContent = "📃";
+    }
+    if (playerSelection === "scissors") {
+        playerPick.textContent = "✂️";
+    }
 
-        if (playerSelection == undefined || playerSelection == "") {
-            return alert("Cancelled");
-        }
+    const computerSelection = computerPlay();
 
-        if (playerSelection.trim().toLowerCase() == "rock" || playerSelection.trim().toLowerCase() == "paper" || playerSelection.trim().toLowerCase() == "scissors") {
-            const computerSelection = computerPlay();
-            let results = playRound(playerSelection, computerSelection);
-            
-            if (results.toLowerCase().includes("win")) {
-                alert(playRound(playerSelection, computerSelection));
-                yourScore += 1;
-            } else if (results.toLowerCase().includes("tie")) {
-                alert(playRound(playerSelection, computerSelection));
-                tie += 1;
-            } else {
-                alert(playRound(playerSelection, computerSelection));
-                enemyScore += 1;
-            }
+    if (computerSelection.toLowerCase() === "rock") {
+        computerPick.textContent = "🪨";
+    }
+    if (computerSelection.toLowerCase() === "paper") {
+        computerPick.textContent = "📃";
+    }
+    if (computerSelection.toLowerCase() === "scissors") {
+        computerPick.textContent = "✂️";
+    }
 
-            // Shows the result per round
-            console.log(playRound(playerSelection, computerSelection));
+    let results = playRound(playerSelection, computerSelection);
+    
+    if (results.toLowerCase().includes("win")) {
+        resultText.textContent = playRound(playerSelection, computerSelection);
+        yourScore += 1;
+    } else if (results.toLowerCase().includes("tie")) {
+        resultText.textContent = playRound(playerSelection, computerSelection);
+        tie += 1;
+    } else {
+        resultText.textContent = playRound(playerSelection, computerSelection);
+        enemyScore += 1;
+    }
+
+    playerScore.textContent = yourScore;
+    computerScore.textContent = enemyScore;
+
+    round += 1;
+
+    if (round === 5) {
+        buttons.forEach((button) => {
+            button.disabled = true;
+        });
+
+        // console.log(`Your score is ${yourScore} out of 5 and ${tie} tie(s).`);
+
+        if (yourScore === enemyScore) {
+            resultText.textContent = `It's a draw. Your score is ${yourScore} out of 5 and ${tie} tie(s).`;
+        } else if (yourScore > enemyScore) {
+            resultText.textContent = `You won! Your score is ${yourScore} out of 5 and ${tie} tie(s).`;
         } else {
-            return alert("Invalid input!\nPlease reload the page then select one. [Rock] [Paper] [Scissors]");
+            resultText.textContent = `Computer won! Your score is ${yourScore} out of 5 and ${tie} tie(s).`;
         }
+
+        // let text = "Do you want to play again?\nClick OK if YES or Cancel if NO.";
+        // if (confirm(text) == true) {
+        //     text = "You pressed OK!";
+        //     game();
+        // } else {
+        //     text = "You canceled!";
+        //     return false;
+        // }
+
+        yourScore = 0;
+        tie = 0;
+        enemyScore = 0;
+        round = 0;
+
+        return;
     }
-
-    console.log(`Your score is ${yourScore} out of 5 and ${tie} tie(s).`);
-
-    if (yourScore === enemyScore) {
-        alert(`It's a draw. Your score is ${yourScore} out of 5 and ${tie} tie(s).`);
-        console.log("Draw");
-    } else if (yourScore > enemyScore) {
-        alert(`You won! Your score is ${yourScore} out of 5 and ${tie} tie(s).`);
-        console.log("You won!")
-    } else {
-        alert(`Computer won! Your score is ${yourScore} out of 5 and ${tie} tie(s).`)
-        console.log("Computer won!")
-    }
-
-    let text = "Do you want to play again?\nClick OK if YES or Cancel if NO.";
-    if (confirm(text) == true) {
-        text = "You pressed OK!";
-        game();
-    } else {
-        text = "You canceled!";
-        return false;
-    }
-
-    return;
 }
-
-// game();
