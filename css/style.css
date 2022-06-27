@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Press Start 2P';
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+h1 {
+	margin-top: 3rem;
+	text-align: center;
+}
+
+.container {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	width: 80%;
+	border-radius: 10px;
+	margin-top: 3rem;
+	padding: 2rem 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 100px;
+}
+
+.score {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 32px;
+}
+
+.score .player-score {
+	color: green;
+}
+
+.score .computer-score {
+	color: red;
+}
+
+.results {
+	width: 100%;
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+}
+
+.results-chosen {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	font-size: 32px;
+}
+
+.results-text {
+	font-size: 32px;
+	text-align: center;
+}
+
+.options {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.options button {
+	text-align: center;
+	font-size: 32px;
+	border-radius: 100%;
+	border: 0;
+	padding: 20px;
+}
+
+.options button:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	background: beige;
+}
