@@ -89,4 +89,11 @@ h1 {
 .options button:hover {
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 	background: beige;
+	cursor: pointer;
+}
+
+.options button:active {
+	background: rgb(245, 245, 179);
+	cursor: pointer;
+	transform: translateY(4px);
 }
