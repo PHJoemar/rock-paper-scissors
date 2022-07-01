@@ -1,12 +1,16 @@
+const container = document.querySelector('.container');
 const playerPick = document.querySelector('.player');
 const computerPick = document.querySelector('.computer');
 const playerScore = document.querySelector('.player-score');
 const computerScore = document.querySelector('.computer-score');
 const resultText = document.querySelector('.results-text');
+const options = document.querySelector('.options');
 const buttons = document.querySelectorAll('button');
 const btnRock = document.querySelector('.btn-rock');
 const btnPaper = document.querySelector('.btn-paper');
 const btnScissors = document.querySelector('.btn-scissors');
+const divTryAgain = document.querySelector('.try-again');
+const btnTryAgain = document.querySelector('.btn-tryagain');
 
 let round = 0;
 let yourScore = 0;
@@ -24,6 +28,23 @@ btnPaper.addEventListener('click', () => {
 btnScissors.addEventListener('click', () => {
     const playerSelection = "scissors";
     game(playerSelection);
+});
+btnTryAgain.addEventListener('click', () => {
+    if(btnTryAgain) {
+        playerScore.textContent = "0";
+        computerScore.textContent = "0";
+        
+        playerPick.textContent = "?";
+        computerPick.textContent = "?";
+        resultText.textContent = "VS";
+        
+        buttons.forEach((button) => {
+            button.disabled = false;
+        });
+
+        divTryAgain.classList.toggle('hidden');
+        options.classList.toggle('hidden');
+    }
 });
 
 function computerPlay() {
@@ -125,8 +146,7 @@ function game(playerSelection) {
         buttons.forEach((button) => {
             button.disabled = true;
         });
-
-        // console.log(`Your score is ${yourScore} out of 5 and ${tie} tie(s).`);
+        btnTryAgain.disabled = false;
 
         if (yourScore === enemyScore) {
             resultText.textContent = `It's a draw. Your score is ${yourScore} out of 5 and ${tie} tie(s).`;
@@ -135,15 +155,9 @@ function game(playerSelection) {
         } else {
             resultText.textContent = `Computer won! Your score is ${yourScore} out of 5 and ${tie} tie(s).`;
         }
-
-        // let text = "Do you want to play again?\nClick OK if YES or Cancel if NO.";
-        // if (confirm(text) == true) {
-        //     text = "You pressed OK!";
-        //     game();
-        // } else {
-        //     text = "You canceled!";
-        //     return false;
-        // }
+        
+        divTryAgain.classList.toggle('hidden');
+        options.classList.toggle('hidden');
 
         yourScore = 0;
         tie = 0;
