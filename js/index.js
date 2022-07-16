@@ -27,6 +27,7 @@ btnScissors.addEventListener('click', () => {
     const playerSelection = "scissors";
     game(playerSelection);
 });
+
 btnTryAgain.addEventListener('click', () => {
     if(btnTryAgain) {
         playerScore.textContent = "0";
@@ -49,78 +50,40 @@ function computerPlay() {
     // A variable that gives random number between 1 and 3
     let computer = (Math.floor(Math.random() * 3) + 1);
 
-    if (computer == 1) {
-        return "Rock";
-    }
-    
-    if (computer == 2) {
-        return "Paper";
-    }
-    
-    if (computer == 3) {
-        return "Scissors";
-    }
+    if (computer === 1) return "Rock";
+    if (computer === 2) return "Paper";
+    if (computer === 3) return "Scissors";
 }
 
 function playRound(playerSelection, computerSelection) {
     let player = playerSelection.toLowerCase();
     let computer = computerSelection.toLowerCase();
     
-    if (player == "rock" && computer == "rock") {
-        return "Tie!"
-    }
-    if (player == "rock" && computer == "paper") {
-        return "You Lose! Paper beats Rock!"
-    }
-    if (player == "rock" && computer == "scissors") {
-        return "You Win! Rock beats Scissors!"
-    }
+    if (player === "rock" && computer === "rock") return "Tie!";
+    if (player === "rock" && computer === "paper") return "You Lose! Paper beats Rock!";
+    if (player === "rock" && computer === "scissors") return "You Win! Rock beats Scissors!";
     
-    if (player == "paper" && computer == "rock") {
-        return "You Win! Paper beats Rock!"
-    }
-    if (player == "paper" && computer == "paper") {
-        return "Tie!"
-    }
-    if (player == "paper" && computer == "scissors") {
-        return "You Lose! Scissors beats Paper!"
-    }
+    if (player === "paper" && computer === "rock") return "You Win! Paper beats Rock!";
+    if (player === "paper" && computer === "paper") return "Tie!";
+    if (player === "paper" && computer === "scissors") return "You Lose! Scissors beats Paper!";
     
-    if (player == "scissors" && computer == "rock") {
-        return "You Lose! Rock beats Scissors!"
-    }
-    if (player == "scissors" && computer == "paper") {
-        return "You Win! Scissors beats Paper!"
-    }
-    if (player == "scissors" && computer == "scissors") {
-        return "Tie!"
-    }
+    if (player === "scissors" && computer === "rock") return "You Lose! Rock beats Scissors!";
+    if (player === "scissors" && computer === "paper") return "You Win! Scissors beats Paper!";
+    if (player === "scissors" && computer === "scissors") return "Tie!";
 }
 
 function game(playerSelection) {
     resultText.textContent = "VS";
     
-    if (playerSelection === "rock") {
-        playerPick.textContent = "🪨";
-    }
-    if (playerSelection === "paper") {
-        playerPick.textContent = "📃";
-    }
-    if (playerSelection === "scissors") {
-        playerPick.textContent = "✂️";
-    }
+    if (playerSelection === "rock") playerPick.textContent = "🗿";
+    if (playerSelection === "paper") playerPick.textContent = "📃";
+    if (playerSelection === "scissors") playerPick.textContent = "✂️";
 
     const computerSelection = computerPlay();
 
-    if (computerSelection.toLowerCase() === "rock") {
-        computerPick.textContent = "🪨";
-    }
-    if (computerSelection.toLowerCase() === "paper") {
-        computerPick.textContent = "📃";
-    }
-    if (computerSelection.toLowerCase() === "scissors") {
-        computerPick.textContent = "✂️";
-    }
+    if (computerSelection.toLowerCase() === "rock") computerPick.textContent = "🗿";
+    if (computerSelection.toLowerCase() === "paper") computerPick.textContent = "📃";
+    if (computerSelection.toLowerCase() === "scissors") computerPick.textContent = "✂️";
 
     let results = playRound(playerSelection, computerSelection);
     
